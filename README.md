@@ -21,6 +21,7 @@ Les librairies python de l'assistant **Alexa** ont pour prérequis la version Py
 - --> il faut installer la version 3.6 sur PI
 
 ```python
+# Prévoir plusieurs heures pour la compilation
 sudo apt-get install -y make build-essential libssl-dev zlib1g-dev
 sudo apt-get install -y libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm
 sudo apt-get install -y libncurses5-dev  libncursesw5-dev xz-utils tk-dev
@@ -30,6 +31,4 @@ tar xvf Python-3.6.9.tgz
 cd Python-3.6.9
 ./configure --enable-optimizations
 sudo make altinstall
-python3.6
-
 ```
