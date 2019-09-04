@@ -1,0 +1,32 @@
+#!/bin/bash
+set -u
+
+# Source YunoHost helpers
+source /usr/share/yunohost/helpers
+
+# Retrieve app settings
+app=$YNH_APP_INSTANCE_NAME
+domain=$(ynh_app_setting_get $app domain)
+system_name=$(ynh_app_setting_get $app system_name)
+final_path=/var/www/$app
+
+echo "app:"$app "domain:"$domain "system_name:"$system_name "final_path:"$final_path
+
+# Remove dependencies
+ynh_remove_app_dependencies
+
+# Remove nginx configuration file
+ynh_secure_remove --file="/etc/nginx/conf.d/${domain}.d/${app}.conf"
+
+# Remove services
+yunohost service stop $app
+yunohost service remove $app
+
+# Remove sources
+ynh_secure_remove --file="${final_path}"
+
+# Delete system user
+ynh_system_user_delete $system_name 
+
+# Reload nginx service
+service nginx reload

@@ -1,0 +1,20 @@
+{
+	"body": {
+		"version": "1.0",
+		"response": {
+			"outputSpeech": {
+				"type": "SSML",
+				"ssml": "<speak>Karl à ton écoute</speak>"
+			},
+			"card": {
+				"type": "Simple",
+				"title": "Hello World",
+				"content": "Karl à ton écoute"
+			},
+			"shouldEndSession": false,
+			"type": "_DEFAULT_RESPONSE"
+		},
+		"sessionAttributes": {},
+		"userAgent": "ask-python/1.11.0 Python/3.6.8 ask-webservice flask-ask-sdk"
+	}
+}

@@ -1,0 +1,126 @@
+#!/bin/bash
+
+# Exit on command errors and treat unset variables as an error
+set -eu
+
+# Source YunoHost helpers
+source /usr/share/yunohost/helpers
+
+ynh_clean_setup () {
+	### Remove this function if there's nothing to clean before calling the remove script.
+	true
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
+# Retrieve manifest arguments
+app=$YNH_APP_INSTANCE_NAME
+domain=$YNH_APP_ARG_DOMAIN
+path=$YNH_APP_ARG_PATH
+app_system_name=$YNH_APP_ARG_SYSTEM_NAME
+app_display_name=$YNH_APP_ARG_DISPLAY_NAME
+is_public=$YNH_APP_ARG_IS_PUBLIC
+
+final_path=/var/www/$app
+
+function main()
+{
+    configure_app
+    install_dependencies
+    init_venv
+    configure_flask_app
+    configure_service
+    configure_nginx_and_ssowat
+    start_app
+}
+
+function configure_app()
+{
+    ynh_webpath_register $app $domain $path
+    ynh_app_setting_set "$app" display_name "$app_display_name"
+    ynh_app_setting_set "$app" system_name "$app_system_name"
+    ynh_app_setting_set "$app" is_public "$is_public"
+}
+
+function install_dependencies()
+{
+    ynh_install_app_dependencies virtualenv \
+                                 python3-dev \
+                                 python3-virtualenv \
+                                 python3-pip
+}
+
+function init_venv()
+{
+    mkdir -p $final_path
+    pushd $final_path
+    virtualenv -p python3.6 venv
+    set +o nounset 
+    source venv/bin/activate
+    set -o nounset 
+    pip install flask
+    pip install ask-sdk
+    pip install flask-ask-sdk
+    pip install gunicorn
+    pip install pyyaml
+    pip install pygame
+    popd
+}
+
+function configure_flask_app()
+{
+    # Copie des sources de l'application
+    cp -r ../sources/* $final_path/
+
+    # App settings
+    ynh_replace_string "__YNH_APP_WEBPATH__" "$path"       ../conf/settings.py
+    ynh_replace_string "__YNH_APP_FSPATH__"  "$final_path" ../conf/settings.py
+
+    cp ../conf/settings.py $final_path/skill/settings_local.py
+
+    # Gunicorn
+    ynh_replace_string "__YNH_APP_NAME__" "$app_system_name" ../conf/gunicorn.py
+    ynh_replace_string "__YNH_APP_PATH__" "$final_path"      ../conf/gunicorn.py
+    cp ../conf/gunicorn.py $final_path/
+
+    # Set permissions
+    useradd $app_system_name -d $final_path || echo "User already exists"
+    chown -R $app_system_name:www-data $final_path
+}
+
+function configure_service()
+{
+    # Log folder
+    mkdir -p /var/log/$app_system_name
+    chown -R $app_system_name:www-data /var/log/$app_system_name
+
+    # Systemd config
+    ynh_replace_string "__YNH_APP_NAME__" "$app_system_name" ../conf/app.service
+    ynh_replace_string "__YNH_APP_PATH__" "$final_path"      ../conf/app.service
+    cp ../conf/app.service /etc/systemd/system/$app_system_name.service
+
+    systemctl daemon-reload
+    systemctl enable $app_system_name
+    yunohost service add $app_system_name -l /var/log/$app_system_name/access.log
+}
+
+function configure_nginx_and_ssowat()
+{
+    # Nginx conf
+    ynh_replace_string "__YNH_APP_NAME__"    "$app_system_name" ../conf/nginx.conf
+    ynh_replace_string "__YNH_APP_WEBPATH__" "$path"            ../conf/nginx.conf
+    ynh_replace_string "__YNH_APP_FSPATH__"  "$final_path"      ../conf/nginx.conf
+    cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app_system_name.conf
+
+    # Reload Nginx and regenerate SSOwat conf
+    service nginx reload
+    ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
+    yunohost app ssowatconf
+}
+
+function start_app()
+{
+    systemctl start $app_system_name
+}
+
+main
