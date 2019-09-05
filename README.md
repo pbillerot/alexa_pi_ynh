@@ -4,7 +4,7 @@ Package YunoHost - Alexa Python pour RaspberryPI
 
 Commande d'installation :
 
-    sudo yunohost app install https://github.com/pbillerot/alexa_pi_ynl
+    sudo yunohost app install https://github.com/pbillerot/alexa_pi_ynh
 
 RaspberryPI Rev 2 Model B
 -------------------------
