@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, request, url_for, redirect, jsonify
 import requests, json
 
-main = Blueprint('main', __name__, url_prefix="/hello")
+main = Blueprint('main', __name__, url_prefix="/alexa")
 
 @main.route('/')
 def hello_world():
