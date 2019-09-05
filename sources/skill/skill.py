@@ -161,8 +161,8 @@ class SessionEndedRequestHandler(AbstractRequestHandler):
         return is_request_type("SessionEndedRequest")(handler_input)
 
     def handle(self, handler_input):
-        print("SessionEndedRequest")
         # type: (HandlerInput) -> Response
+        print("SessionEndedRequest")
         # requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
         return handler_input.response_builder.response
 
