@@ -8,8 +8,8 @@ def hello_world():
   print('Hello')
   return 'Hello, World!'
 
-@main.route('/success/<user>')
-def hello_success(user):
+@main.route('/hello/<user>')
+def hello_user(user):
   print(f'Hello {user}')
   return f'Hello {user}'
 
