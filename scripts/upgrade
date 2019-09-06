@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# sudo yunohost app upgrade alexa
+# sudo yunohost app upgrade alexa -u https://github.com/pbillerot/alexa_pi_ynh
 
 # Exit on command errors and treat unset variables as an error
 set -eu
