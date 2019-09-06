@@ -12,7 +12,7 @@ source /usr/share/yunohost/helpers
 ynh_abort_if_errors
 
 # Retrieve app settings
-ynh_script_progression --message="Récupération des patamètres de $app..." --time
+ynh_script_progression --message="Récupération des paramètres..." --time
 app=$YNH_APP_INSTANCE_NAME
 system_name=$(ynh_app_setting_get $app system_name)
 
