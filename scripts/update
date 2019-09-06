@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Exit on command errors and treat unset variables as an error
+set -eu
+
+# Source YunoHost helpers
+source /usr/share/yunohost/helpers
+
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
+# Retrieve app settings
+ynh_script_progression --message="Récupération des patamètres de $app..."
+app=$YNH_APP_INSTANCE_NAME
+system_name=$(ynh_app_setting_get $app system_name)
+
+final_path=/var/www/$app
+
+# Arrêt du service
+ynh_script_progression --message="Arrêt du service $system_name..."
+ynh_systemd_action --service_name=$system_name --action=stop
+
+# mise à jour des sources
+ynh_script_progression --message="Installation des sources..."
+cp -r ../sources/* $final_path/
+
+# Rédémarrage du service
+ynh_script_progression --message="Redémarrage du service $system_name..."
+ynh_systemd_action --service_name=$system_name --action=start
