@@ -65,7 +65,7 @@ function init_venv()
     pip install ask-sdk
     pip install flask-ask-sdk
     pip install gunicorn
-    pip install pyyaml
+    deactivate
     popd
 }
 
