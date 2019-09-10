@@ -39,6 +39,7 @@ class SongFouleSentimentaleConeIntentHandler(AbstractRequestHandler):
             SimpleCard("Parole", speech_text)).set_should_end_session(
             False)
         return handler_input.response_builder.response
+sb.add_request_handler(SongFouleSentimentaleConeIntentHandler())
 
 class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -51,6 +52,7 @@ class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
             SimpleCard("Parole", speech_text)).set_should_end_session(
             False)
         return handler_input.response_builder.responseS
+sb.add_request_handler(SongFouleSentimentaleRoneIntentHandler())
 
 class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -63,6 +65,7 @@ class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):
             SimpleCard("Parole", speech_text)).set_should_end_session(
             False)
         return handler_input.response_builder.response
+sb.add_request_handler(SongRiveGaucheConeIntentHandler())
 
 class SongRiveGaucheRoneIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -75,6 +78,7 @@ class SongRiveGaucheRoneIntentHandler(AbstractRequestHandler):
             SimpleCard("Parole", speech_text)).set_should_end_session(
             False)
         return handler_input.response_builder.response
+sb.add_request_handler(SongRiveGaucheRoneIntentHandler())
 
 class HelloWorldIntentHandler(AbstractRequestHandler):
     """Handler for Hello World Intent."""
