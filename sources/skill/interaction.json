@@ -1,0 +1,97 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "karl",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": [
+            "excuse moi"
+          ]
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "aide moi",
+            "aide",
+            "help"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": [
+            "stop",
+            "bye",
+            "arrete"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": [
+            "debut"
+          ]
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": ["pause"]
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": ["fin"]
+        },
+        {
+          "name": "HelloWorldIntent",
+          "slots": [],
+          "samples": [
+            "comment tu vas",
+            "bonjour",
+            "hello"
+          ]
+        },
+        {
+          "name": "Song_FouleSentimentale_c1",
+          "slots": [],
+          "samples": [
+            "parole foule sentimentale couplet un"
+          ]
+        },
+        {
+          "name": "Song_FouleSentimentale_r",
+          "slots": [],
+          "samples": [
+            "parole foule sentimentale refrain"
+          ]
+        },
+        {
+          "name": "Song_RiveGauche_c1",
+          "slots": [],
+          "samples": [
+            "parole rive gauche couplet un"
+          ]
+        },
+        {
+          "name": "Song_RiveGauche_r1",
+          "slots": [],
+          "samples": [
+            "parole rive gauche refrain un"
+          ]
+        },
+        {
+          "name": "TempoCentIntent",
+          "slots": [],
+          "samples": [
+            "tempo cent"
+          ]
+        },
+        {
+          "name": "TempoCentDixIntent",
+          "slots": [],
+          "samples": [
+            "tempo cent dix"
+          ]
+        }
+      ],
+      "types": []
+    }
+  }
+}

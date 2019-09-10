@@ -19,10 +19,62 @@ from ask_sdk_model.ui import SimpleCard
 from ask_sdk_model import Response
 
 import requests
+import configparser
+
+config = ConfigParser.ConfigParser()
+
 sb = SkillBuilder()
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+class Song_FouleSentimentale_C1_IntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("Song_FouleSentimentale_c1_Intent")(handler_input)
+
+    def handle(self, handler_input):
+        config.read("data/songs.ini")
+        speech_text = config.get("FouleSentimentale", "c1")
+        handler_input.response_builder.speak(speech_text).set_card(
+            SimpleCard("Parole", speech_text)).set_should_end_session(
+            False)
+        return handler_input.response_builder.response
+
+class Song_FouleSentimentale_r_IntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("Song_FouleSentimentale_r_Intent")(handler_input)
+
+    def handle(self, handler_input):
+        config.read("data/songs.ini")
+        speech_text = config.get("FouleSentimentale", "r")
+        handler_input.response_builder.speak(speech_text).set_card(
+            SimpleCard("Parole", speech_text)).set_should_end_session(
+            False)
+        return handler_input.response_builder.response
+
+class Song_RiveGauche_C1_IntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("Song_RiveGauche_c1_Intent")(handler_input)
+
+    def handle(self, handler_input):
+        config.read("data/songs.ini")
+        speech_text = config.get("RiveGauche", "c1")
+        handler_input.response_builder.speak(speech_text).set_card(
+            SimpleCard("Parole", speech_text)).set_should_end_session(
+            False)
+        return handler_input.response_builder.response
+
+class Song_RiveGauche_r1_IntentHandler(AbstractRequestHandler):
+    def can_handle(self, handler_input):
+        return is_intent_name("Song_RiveGauche_r1_Intent")(handler_input)
+
+    def handle(self, handler_input):
+        config.read("data/songs.ini")
+        speech_text = config.get("FouleSentimentale", "r1")
+        handler_input.response_builder.speak(speech_text).set_card(
+            SimpleCard("Parole", speech_text)).set_should_end_session(
+            False)
+        return handler_input.response_builder.response
 
 class HelloWorldIntentHandler(AbstractRequestHandler):
     """Handler for Hello World Intent."""
