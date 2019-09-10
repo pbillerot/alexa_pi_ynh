@@ -36,7 +36,7 @@ class SongFouleSentimentaleConeIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         config.read(currentDir + "/data/songs.ini")
-        speech_text = config.get("FouleSentimentale", "c1")
+        speech_text = config.get("FouleSentimentale", "c1").replace("\n", ",")
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
             False)
@@ -50,7 +50,7 @@ class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         config.read(currentDir + "/data/songs.ini")
         if ( config is not None ):
-            speech_text = config.get("FouleSentimentale", "r1")
+            speech_text = config.get("FouleSentimentale", "r1").replace("\n", ", ")
         if speech_text is not None:
             handler_input.response_builder.speak(speech_text).set_card(
                 SimpleCard("Parole", speech_text)).set_should_end_session(
