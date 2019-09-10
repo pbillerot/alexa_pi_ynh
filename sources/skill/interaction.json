@@ -52,28 +52,32 @@
           "name": "Song_FouleSentimentale_c1",
           "slots": [],
           "samples": [
-            "parole foule sentimentale couplet un"
+            "foule sentimentale couplet",
+            "foule sentimentale un",
+            "foule sentimentale couplet un"
           ]
         },
         {
-          "name": "Song_FouleSentimentale_r",
+          "name": "Song_FouleSentimentale_r1",
           "slots": [],
           "samples": [
-            "parole foule sentimentale refrain"
+            "foule sentimentale refrain",
+            "foule sentimentale refrain un"
           ]
         },
         {
           "name": "Song_RiveGauche_c1",
           "slots": [],
           "samples": [
-            "parole rive gauche couplet un"
+            "rive gauche couplet",
+            "rive gauche couplet un"
           ]
         },
         {
           "name": "Song_RiveGauche_r1",
           "slots": [],
           "samples": [
-            "parole rive gauche refrain un"
+            "rive gauche refrain un"
           ]
         },
         {

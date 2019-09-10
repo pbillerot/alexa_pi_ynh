@@ -40,17 +40,17 @@ class Song_FouleSentimentale_C1_IntentHandler(AbstractRequestHandler):
             False)
         return handler_input.response_builder.response
 
-class Song_FouleSentimentale_r_IntentHandler(AbstractRequestHandler):
+class Song_FouleSentimentale_r1_IntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
-        return is_intent_name("Song_FouleSentimentale_r_Intent")(handler_input)
+        return is_intent_name("Song_FouleSentimentale_r1_Intent")(handler_input)
 
     def handle(self, handler_input):
         config.read("data/songs.ini")
-        speech_text = config.get("FouleSentimentale", "r")
+        speech_text = config.get("FouleSentimentale", "r1")
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
             False)
-        return handler_input.response_builder.response
+        return handler_input.response_builder.responseS
 
 class Song_RiveGauche_C1_IntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
