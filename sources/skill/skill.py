@@ -47,10 +47,16 @@ class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         config.read("data/songs.ini")
-        speech_text = config.get("FouleSentimentale", "r1")
-        handler_input.response_builder.speak(speech_text).set_card(
-            SimpleCard("Parole", speech_text)).set_should_end_session(
-            False)
+        if ( config is not None ):
+            speech_text = config.get("FouleSentimentale", "r1")
+        if speech_text is not None:
+            handler_input.response_builder.speak(speech_text).set_card(
+                SimpleCard("Parole", speech_text)).set_should_end_session(
+                True)
+        else:
+            handler_input.response_builder.speak(speech_text).set_card(
+                SimpleCard("Parole", "Non trouvé")).set_should_end_session(
+                True)
         return handler_input.response_builder.responseS
 sb.add_request_handler(SongFouleSentimentaleRoneIntentHandler())
 
