@@ -46,18 +46,24 @@ class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
         return is_intent_name("SongFouleSentimentaleRoneIntent")(handler_input)
 
     def handle(self, handler_input):
-        config.read("data/songs.ini")
-        if ( config is not None ):
-            speech_text = config.get("FouleSentimentale", "r1")
-        if speech_text is not None:
-            handler_input.response_builder.speak(speech_text).set_card(
-                SimpleCard("Parole", speech_text)).set_should_end_session(
-                True)
-        else:
-            handler_input.response_builder.speak(speech_text).set_card(
-                SimpleCard("Parole", "Non trouvé")).set_should_end_session(
-                True)
-        return handler_input.response_builder.responseS
+        # config.read("data/songs.ini")
+        # if ( config is not None ):
+        #     speech_text = config.get("FouleSentimentale", "r1")
+        # if speech_text is not None:
+        #     handler_input.response_builder.speak(speech_text).set_card(
+        #         SimpleCard("Parole", speech_text)).set_should_end_session(
+        #         True)
+        # else:
+        #     handler_input.response_builder.speak(speech_text).set_card(
+        #         SimpleCard("Parole", "Non trouvé")).set_should_end_session(
+        #         True)
+        # return handler_input.response_builder.responseS
+        speech_text = "Foule sentimentale, on a soif d'idéal!"
+        handler_input.response_builder.speak(speech_text).set_card(
+            SimpleCard("Hello World", speech_text)).set_should_end_session(
+            False)
+        return handler_input.response_builder.response
+
 sb.add_request_handler(SongFouleSentimentaleRoneIntentHandler())
 
 class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):
@@ -93,7 +99,6 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
         return is_intent_name("HelloWorldIntent")(handler_input)
 
     def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
         print("HelloWorldIntent")
         speech_text = "Bonjour, de la part de Karl!"
 
