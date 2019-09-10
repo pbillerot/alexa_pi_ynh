@@ -21,16 +21,16 @@ from ask_sdk_model import Response
 import requests
 import configparser
 
-config = ConfigParser.ConfigParser()
+config = configparser.ConfigParser()
 
 sb = SkillBuilder()
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-class Song_FouleSentimentale_C1_IntentHandler(AbstractRequestHandler):
+class SongFouleSentimentaleConeIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
-        return is_intent_name("Song_FouleSentimentale_c1_Intent")(handler_input)
+        return is_intent_name("SongFouleSentimentaleConeIntent")(handler_input)
 
     def handle(self, handler_input):
         config.read("data/songs.ini")
@@ -40,9 +40,9 @@ class Song_FouleSentimentale_C1_IntentHandler(AbstractRequestHandler):
             False)
         return handler_input.response_builder.response
 
-class Song_FouleSentimentale_r1_IntentHandler(AbstractRequestHandler):
+class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
-        return is_intent_name("Song_FouleSentimentale_r1_Intent")(handler_input)
+        return is_intent_name("SongFouleSentimentaleRoneIntent")(handler_input)
 
     def handle(self, handler_input):
         config.read("data/songs.ini")
@@ -52,9 +52,9 @@ class Song_FouleSentimentale_r1_IntentHandler(AbstractRequestHandler):
             False)
         return handler_input.response_builder.responseS
 
-class Song_RiveGauche_C1_IntentHandler(AbstractRequestHandler):
+class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
-        return is_intent_name("Song_RiveGauche_c1_Intent")(handler_input)
+        return is_intent_name("SongRiveGaucheConeIntent")(handler_input)
 
     def handle(self, handler_input):
         config.read("data/songs.ini")
@@ -64,9 +64,9 @@ class Song_RiveGauche_C1_IntentHandler(AbstractRequestHandler):
             False)
         return handler_input.response_builder.response
 
-class Song_RiveGauche_r1_IntentHandler(AbstractRequestHandler):
+class SongRiveGaucheRoneIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
-        return is_intent_name("Song_RiveGauche_r1_Intent")(handler_input)
+        return is_intent_name("SongRiveGaucheRoneIntent")(handler_input)
 
     def handle(self, handler_input):
         config.read("data/songs.ini")

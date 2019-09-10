@@ -5,39 +5,27 @@
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
-          "samples": [
-            "excuse moi"
-          ]
+          "samples": []
         },
         {
           "name": "AMAZON.HelpIntent",
-          "samples": [
-            "aide moi",
-            "aide",
-            "help"
-          ]
+          "samples": []
         },
         {
           "name": "AMAZON.StopIntent",
-          "samples": [
-            "stop",
-            "bye",
-            "arrete"
-          ]
+          "samples": []
         },
         {
           "name": "AMAZON.NavigateHomeIntent",
-          "samples": [
-            "debut"
-          ]
+          "samples": []
         },
         {
           "name": "AMAZON.PauseIntent",
-          "samples": ["pause"]
+          "samples": []
         },
         {
           "name": "AMAZON.ResumeIntent",
-          "samples": ["fin"]
+          "samples": []
         },
         {
           "name": "HelloWorldIntent",
@@ -49,7 +37,7 @@
           ]
         },
         {
-          "name": "Song_FouleSentimentale_c1",
+          "name": "SongFouleSentimentaleConeIntent",
           "slots": [],
           "samples": [
             "foule sentimentale couplet",
@@ -58,7 +46,7 @@
           ]
         },
         {
-          "name": "Song_FouleSentimentale_r1",
+          "name": "SongFouleSentimentaleRoneIntent",
           "slots": [],
           "samples": [
             "foule sentimentale refrain",
@@ -66,7 +54,7 @@
           ]
         },
         {
-          "name": "Song_RiveGauche_c1",
+          "name": "SongRiveGaucheConeIntent",
           "slots": [],
           "samples": [
             "rive gauche couplet",
@@ -74,7 +62,7 @@
           ]
         },
         {
-          "name": "Song_RiveGauche_r1",
+          "name": "SongRiveGaucheRoneIntent",
           "slots": [],
           "samples": [
             "rive gauche refrain un"
