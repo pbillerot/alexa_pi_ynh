@@ -1,11 +1,19 @@
 from flask import Flask, Blueprint, request, url_for, redirect, jsonify
 import requests, json
+import os
+import configparser
+
+config = configparser.ConfigParser()
+currentDir = os.path.dirname(os.path.realpath(__file__))
 
 main = Blueprint('main', __name__, url_prefix="/alexa")
 
 @main.route('/')
 def hello_world():
   print('Hello')
+  config.read(currentDir + "/data/songs.ini")
+  texte = config.get("FouleSentimentale", "r1")
+  print(texte)
   return 'Hello, World!'
 
 @main.route('/hello/<user>')

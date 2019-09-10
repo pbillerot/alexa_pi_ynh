@@ -20,6 +20,8 @@ from ask_sdk_model import Response
 
 import requests
 import configparser
+import os
+currentDir = os.path.dirname(os.path.realpath(__file__))
 
 config = configparser.ConfigParser()
 
@@ -33,7 +35,7 @@ class SongFouleSentimentaleConeIntentHandler(AbstractRequestHandler):
         return is_intent_name("SongFouleSentimentaleConeIntent")(handler_input)
 
     def handle(self, handler_input):
-        config.read("data/songs.ini")
+        config.read(currentDir + "/data/songs.ini")
         speech_text = config.get("FouleSentimentale", "c1")
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
@@ -46,23 +48,23 @@ class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
         return is_intent_name("SongFouleSentimentaleRoneIntent")(handler_input)
 
     def handle(self, handler_input):
-        # config.read("data/songs.ini")
-        # if ( config is not None ):
-        #     speech_text = config.get("FouleSentimentale", "r1")
-        # if speech_text is not None:
-        #     handler_input.response_builder.speak(speech_text).set_card(
-        #         SimpleCard("Parole", speech_text)).set_should_end_session(
-        #         True)
-        # else:
-        #     handler_input.response_builder.speak(speech_text).set_card(
-        #         SimpleCard("Parole", "Non trouvé")).set_should_end_session(
-        #         True)
-        # return handler_input.response_builder.responseS
-        speech_text = "Foule sentimentale, on a soif d'idéal!"
-        handler_input.response_builder.speak(speech_text).set_card(
-            SimpleCard("Hello World", speech_text)).set_should_end_session(
-            False)
-        return handler_input.response_builder.response
+        config.read(currentDir + "/data/songs.ini")
+        if ( config is not None ):
+            speech_text = config.get("FouleSentimentale", "r1")
+        if speech_text is not None:
+            handler_input.response_builder.speak(speech_text).set_card(
+                SimpleCard("Parole", speech_text)).set_should_end_session(
+                True)
+        else:
+            handler_input.response_builder.speak(speech_text).set_card(
+                SimpleCard("Parole", "Non trouvé")).set_should_end_session(
+                True)
+        return handler_input.response_builder.responseS
+        # speech_text = "Foule sentimentale, on a soif d'idéal!"
+        # handler_input.response_builder.speak(speech_text).set_card(
+        #     SimpleCard("Hello World", speech_text)).set_should_end_session(
+        #     False)
+        # return handler_input.response_builder.response
 
 sb.add_request_handler(SongFouleSentimentaleRoneIntentHandler())
 
@@ -71,7 +73,7 @@ class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):
         return is_intent_name("SongRiveGaucheConeIntent")(handler_input)
 
     def handle(self, handler_input):
-        config.read("data/songs.ini")
+        config.read(currentDir + "/data/songs.ini")
         speech_text = config.get("RiveGauche", "c1")
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
@@ -84,7 +86,7 @@ class SongRiveGaucheRoneIntentHandler(AbstractRequestHandler):
         return is_intent_name("SongRiveGaucheRoneIntent")(handler_input)
 
     def handle(self, handler_input):
-        config.read("data/songs.ini")
+        config.read(currentDir + "/data/songs.ini")
         speech_text = config.get("FouleSentimentale", "r1")
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
