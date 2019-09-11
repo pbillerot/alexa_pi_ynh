@@ -11,8 +11,8 @@ from ask_sdk_core.utils import is_request_type, is_intent_name
 from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model.interfaces.audioplayer import (
-    PlayDirective, PlayBehavior, AudioItem, Stream, AudioItemMetadata,
-    StopDirective, ClearQueueDirective, ClearBehavior)
+  PlayDirective, PlayBehavior, AudioItem, Stream, AudioItemMetadata,
+  StopDirective, ClearQueueDirective, ClearBehavior)
 from ask_sdk_model.ui import StandardCard, Image
 
 from ask_sdk_model.ui import SimpleCard
@@ -31,16 +31,20 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 class SongFouleSentimentaleConeIntentHandler(AbstractRequestHandler):
-    def can_handle(self, handler_input):
-        return is_intent_name("SongFouleSentimentaleConeIntent")(handler_input)
+  def can_handle(self, handler_input):
+    return is_intent_name("SongFouleSentimentaleConeIntent")(handler_input)
 
     def handle(self, handler_input):
+      try:
         config.read(currentDir + "/data/songs.ini")
-        speech_text = config.get("FouleSentimentale", "c1").replace("\n", ",")
-        handler_input.response_builder.speak(speech_text).set_card(
-            SimpleCard("Parole", speech_text)).set_should_end_session(
-            False)
-        return handler_input.response_builder.response
+        speech_text = config.get("FouleSentimentale", "c1").replace("\n", ", ")
+      except:
+        speech_text = "FouleSentimentale couplet 1 non trouvé"
+
+      handler_input.response_builder.speak(speech_text).set_card(
+        SimpleCard("Parole", speech_text)).set_should_end_session(
+        True)
+      return handler_input.response_builder.response
 sb.add_request_handler(SongFouleSentimentaleConeIntentHandler())
 
 class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
@@ -48,18 +52,15 @@ class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
         return is_intent_name("SongFouleSentimentaleRoneIntent")(handler_input)
 
     def handle(self, handler_input):
-        speech_text = "FouleSentimentale.r1 non trouvé"
-        config.read(currentDir + "/data/songs.ini")
-        if ( config is not None ):
+        try:
+            config.read(currentDir + "/data/songs.ini")
             speech_text = config.get("FouleSentimentale", "r1").replace("\n", ", ")
-        if speech_text is not None:
-            handler_input.response_builder.speak(speech_text).set_card(
-                SimpleCard("Foule Sentimentale refrain", speech_text)).set_should_end_session(
-                True)
-        else:
-            handler_input.response_builder.speak(speech_text).set_card(
-                SimpleCard("Parole", speech_text)).set_should_end_session(
-                True)
+        except:
+            speech_text = "FouleSentimentale refrain 1 non trouvé"
+
+        handler_input.response_builder.speak(speech_text).set_card(
+            SimpleCard("Parole", speech_text)).set_should_end_session(
+            True)
         return handler_input.response_builder.response
 sb.add_request_handler(SongFouleSentimentaleRoneIntentHandler())
 
@@ -68,11 +69,15 @@ class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):
         return is_intent_name("SongRiveGaucheConeIntent")(handler_input)
 
     def handle(self, handler_input):
-        config.read(currentDir + "/data/songs.ini")
-        speech_text = config.get("RiveGauche", "c1")
+        try:
+            config.read(currentDir + "/data/songs.ini")
+            speech_text = config.get("RiveGauche", "c1").replace("\n", ", ")
+        except:
+            speech_text = "RiveGauche couplet 1 non trouvé"
+
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
-            False)
+            True)
         return handler_input.response_builder.response
 sb.add_request_handler(SongRiveGaucheConeIntentHandler())
 
@@ -81,11 +86,15 @@ class SongRiveGaucheRoneIntentHandler(AbstractRequestHandler):
         return is_intent_name("SongRiveGaucheRoneIntent")(handler_input)
 
     def handle(self, handler_input):
-        config.read(currentDir + "/data/songs.ini")
-        speech_text = config.get("FouleSentimentale", "r1")
+        try:
+            config.read(currentDir + "/data/songs.ini")
+            speech_text = config.get("RiveGauche", "r1").replace("\n", ", ")
+        except:
+            speech_text = "RiveGauche refrain 1 non trouvé"
+
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
-            False)
+            True)
         return handler_input.response_builder.response
 sb.add_request_handler(SongRiveGaucheRoneIntentHandler())
 
@@ -103,7 +112,6 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
             SimpleCard("Hello World", speech_text)).set_should_end_session(
             False)
         return handler_input.response_builder.response
-
 sb.add_request_handler(HelloWorldIntentHandler())
 
 class MeteoIntentHandler(AbstractRequestHandler):
@@ -121,7 +129,6 @@ class MeteoIntentHandler(AbstractRequestHandler):
             SimpleCard("Hello World", speech_text)).set_should_end_session(
             False)
         return handler_input.response_builder.response
-
 sb.add_request_handler(MeteoIntentHandler())
 
 class TempoCentIntentHandler(AbstractRequestHandler):
@@ -161,7 +168,6 @@ class TempoCentDixIntentHandler(AbstractRequestHandler):
             SimpleCard("Hello World", speech_text)).set_should_end_session(
             False)
         return handler_input.response_builder.response
-
 sb.add_request_handler(TempoCentDixIntentHandler())
 
 class LaunchRequestHandler(AbstractRequestHandler):
@@ -180,7 +186,6 @@ class LaunchRequestHandler(AbstractRequestHandler):
             False)
         return handler_input.response_builder.response
 
-
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
     def can_handle(self, handler_input):
@@ -197,7 +202,6 @@ class HelpIntentHandler(AbstractRequestHandler):
                 "Hello World", speech_text))
         return handler_input.response_builder.response
 
-
 class CancelOrStopIntentHandler(AbstractRequestHandler):
     """Single handler for Cancel and Stop Intent."""
     def can_handle(self, handler_input):
@@ -211,7 +215,6 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
         speech_text = "Bye!"
 
         requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
-
 
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Hello World", speech_text))
@@ -244,9 +247,9 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
         print("CatchAllException")
         logger.error(exception, exc_info=True)
 
-        speech = "Désolé, j'ai quelques problèmes, essaie plus tard!!"
+        speech = "Désolé, ya un bug dans le programme de Barbichu !!"
         handler_input.response_builder.speak(speech).ask(speech)
-        requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
+        # requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
         return handler_input.response_builder.response
 
 sb.add_request_handler(LaunchRequestHandler())

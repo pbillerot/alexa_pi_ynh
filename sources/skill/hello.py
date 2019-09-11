@@ -20,7 +20,12 @@ def hello_user(user):
 
 @main.route('/parole/<section>/<paragraphe>')
 def parole(section, paragraphe):
-  return config.read(currentDir + "/data/songs.ini").get(section, paragraphe)
+  try:
+    config.read(currentDir + "/data/songs.ini")
+    reponse = config.get(section, paragraphe)
+  except:
+    reponse = f"{section}.{paragraphe} non trouvé"
+  return reponse
 
 @main.route('/post/<user>/<age>')
 # curl http://localhost:5000/alexa/post/tata/14
