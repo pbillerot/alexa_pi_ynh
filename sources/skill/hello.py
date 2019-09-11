@@ -11,15 +11,16 @@ main = Blueprint('main', __name__, url_prefix="/alexa")
 @main.route('/')
 def hello_world():
   print('Hello')
-  config.read(currentDir + "/data/songs.ini")
-  texte = config.get("FouleSentimentale", "r1")
-  print(texte)
-  return 'Hello, World!'
+  return "Hello!!"
 
 @main.route('/hello/<user>')
 def hello_user(user):
   print(f'Hello {user}')
   return f'Hello {user}'
+
+@main.route('/parole/<section>/<paragraphe>')
+def hello_user(section, paragraphe):
+  return config.read(currentDir + "/data/songs.ini").get(section, paragraphe)
 
 @main.route('/post/<user>/<age>')
 # curl http://localhost:5000/alexa/post/tata/14

@@ -52,18 +52,15 @@ class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
         config.read(currentDir + "/data/songs.ini")
         if ( config is not None ):
             speech_text = config.get("FouleSentimentale", "r1").replace("\n", ", ")
-            print(f"Texte réponse 1 <{speech_text}>")
         if speech_text is not None:
-            print(f"Texte réponse 2 <{speech_text}>")
             handler_input.response_builder.speak(speech_text).set_card(
-                SimpleCard("Parole", speech_text)).set_should_end_session(
+                SimpleCard("Foule Sentimentale refrain", speech_text)).set_should_end_session(
                 True)
         else:
             handler_input.response_builder.speak(speech_text).set_card(
                 SimpleCard("Parole", speech_text)).set_should_end_session(
                 True)
-        return handler_input.response_builder.responseS
-
+        return handler_input.response_builder.response
 sb.add_request_handler(SongFouleSentimentaleRoneIntentHandler())
 
 class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):

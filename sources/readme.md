@@ -1,3 +1,6 @@
+
+    sudo yunohost app upgrade alexa -u https://github.com/pbillerot/alexa_pi_ynh
+
 Synoptique de l'application
 ===========================
 
