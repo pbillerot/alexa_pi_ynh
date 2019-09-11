@@ -57,7 +57,7 @@ class ParoleIntentHandler(AbstractRequestHandler):
       SimpleCard("Parole", speech_text)).set_should_end_session(
       False)
     return handler_input.response_builder.response
-sb.add_request_handler(SongFouleSentimentaleConeIntentHandler())
+sb.add_request_handler(ParoleIntentHandler())
 
 class SongFouleSentimentaleConeIntentHandler(AbstractRequestHandler):
   def can_handle(self, handler_input):
