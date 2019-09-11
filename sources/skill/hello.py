@@ -19,7 +19,7 @@ def hello_user(user):
   return f'Hello {user}'
 
 @main.route('/parole/<section>/<paragraphe>')
-def hello_user(section, paragraphe):
+def parole(section, paragraphe):
   return config.read(currentDir + "/data/songs.ini").get(section, paragraphe)
 
 @main.route('/post/<user>/<age>')
