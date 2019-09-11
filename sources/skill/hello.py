@@ -27,7 +27,7 @@ def parole(section, paragraphe):
   except:
     reponse += f"{section}.{paragraphe} non trouvé"
 
-  reponse = "<br/>--------------------------------------------<br/>"
+  reponse += "<br/>--------------------------------------------<br/>"
   return reponse
 
 @main.route('/post/<user>/<age>')

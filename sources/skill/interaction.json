@@ -81,9 +81,100 @@
           "samples": [
             "tempo cent dix"
           ]
+        },
+        {
+          "name": "ParoleIndent",
+          "slots": [
+            {
+              "name": "Morceau",
+              "type": "morceau"
+            },
+            {
+              "name": "Couplet",
+              "type": "couplet"
+            },
+            {
+              "name": "Refrain",
+              "type": "refrain"
+            }
+          ],
+          "samples": [
+            "parole {Morceau} couplet {Couplet}",
+            "parole {Morceau} refrain {Refrain}"
+          ]
         }
       ],
-      "types": []
+      "types": [
+        {
+          "name": "morceau",
+          "values": [
+            {
+              "id": "AmourMachine",
+              "name": {
+                "value": "l'amour à la mchine"
+              }
+            },
+            {
+              "id": "RiveGauche",
+              "name": {
+                "value": "rive gauche"
+              }
+            },
+            {
+              "id": "FouleSentimentale",
+              "name": {
+                "value": "foule sentimentale"
+              }
+            }
+          ]
+        },
+        {
+          "name": "couplet",
+          "values": [
+            {
+              "id": "c3",
+              "name": {
+                "value": "trois"
+              }
+            },
+            {
+              "id": "c2",
+              "name": {
+                "value": "deux"
+              }
+            },
+            {
+              "id": "c1",
+              "name": {
+                "value": "un"
+              }
+            }
+          ]
+        },
+        {
+          "name": "refrain",
+          "values": [
+            {
+              "id": "r3",
+              "name": {
+                "value": "trois"
+              }
+            },
+            {
+              "id": "r2",
+              "name": {
+                "value": "deux"
+              }
+            },
+            {
+              "id": "r1",
+              "name": {
+                "value": "un"
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 }
