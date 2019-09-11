@@ -43,7 +43,7 @@ class SongFouleSentimentaleConeIntentHandler(AbstractRequestHandler):
 
       handler_input.response_builder.speak(speech_text).set_card(
         SimpleCard("Parole", speech_text)).set_should_end_session(
-        True)
+        False)
       return handler_input.response_builder.response
 sb.add_request_handler(SongFouleSentimentaleConeIntentHandler())
 
@@ -60,7 +60,7 @@ class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
 
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
-            True)
+            False)
         return handler_input.response_builder.response
 sb.add_request_handler(SongFouleSentimentaleRoneIntentHandler())
 
@@ -77,7 +77,7 @@ class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):
 
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
-            True)
+            False)
         return handler_input.response_builder.response
 sb.add_request_handler(SongRiveGaucheConeIntentHandler())
 
@@ -94,7 +94,7 @@ class SongRiveGaucheRoneIntentHandler(AbstractRequestHandler):
 
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("Parole", speech_text)).set_should_end_session(
-            True)
+            False)
         return handler_input.response_builder.response
 sb.add_request_handler(SongRiveGaucheRoneIntentHandler())
 

@@ -20,11 +20,14 @@ def hello_user(user):
 
 @main.route('/parole/<section>/<paragraphe>')
 def parole(section, paragraphe):
+  reponse = f"--- {section} - {paragraphe} ---<br/>"
   try:
     config.read(currentDir + "/data/songs.ini")
-    reponse = config.get(section, paragraphe)
+    reponse += config.get(section, paragraphe).replace("\n", "<br/>")
   except:
-    reponse = f"{section}.{paragraphe} non trouvé"
+    reponse += f"{section}.{paragraphe} non trouvé"
+
+  reponse = "<br/>--------------------------------------------<br/>"
   return reponse
 
 @main.route('/post/<user>/<age>')
