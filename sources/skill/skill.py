@@ -36,7 +36,7 @@ logger.setLevel(logging.INFO)
 
 class ParoleIntentHandler(AbstractRequestHandler):
   def can_handle(self, handler_input):
-    return handlerInput.requestEnvelope.request.intent.name == "ParoleIntent"
+    return handler_input.requestEnvelope.request.intent.name == "ParoleIntent"
 
   def handle(self, handler_input):
     slot_morceau = handler_input.requestEnvelope.request.intent.slots.morceau.value
