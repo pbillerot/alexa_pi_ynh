@@ -36,7 +36,8 @@ logger.setLevel(logging.INFO)
 
 class ParoleIntentHandler(AbstractRequestHandler):
   def can_handle(self, handler_input):
-    return is_intent_name("ParoleIntent")(handler_input)
+    pprint(var(handler_input))
+    return handlerInput.requestEnvelope.request.intent.name === "ParoleIntent"
 
   def handle(self, handler_input):
     pprint(var(handler_input))
