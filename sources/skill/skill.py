@@ -244,7 +244,7 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
     print("CancelOrStopIntent")
     speech_text = "Bye!"
 
-    requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
+    # requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
 
     handler_input.response_builder.speak(speech_text).set_card(
         SimpleCard("Hello World", speech_text))
@@ -262,7 +262,6 @@ class SessionEndedRequestHandler(AbstractRequestHandler):
     print("SessionEndedRequest")
     # requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
     return handler_input.response_builder.response
-
 
 class CatchAllExceptionHandler(AbstractExceptionHandler):
   """Catch all exception handler, log exception and

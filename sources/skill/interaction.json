@@ -83,7 +83,7 @@
           ]
         },
         {
-          "name": "ParoleIndent",
+          "name": "ParoleIntent",
           "slots": [
             {
               "name": "Morceau",
@@ -111,7 +111,7 @@
             {
               "id": "AmourMachine",
               "name": {
-                "value": "l'amour à la mchine"
+                "value": "l'amour à la machine"
               }
             },
             {
