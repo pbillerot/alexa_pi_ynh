@@ -24,7 +24,7 @@ from ask_sdk_model import Response
 
 import requests
 import configparser
-import os
+import os, pprint
 currentDir = os.path.dirname(os.path.realpath(__file__))
 
 config = configparser.ConfigParser()
@@ -39,6 +39,7 @@ class ParoleIntentHandler(AbstractRequestHandler):
     return is_intent_name("ParoleIntent")(handler_input)
 
   def handle(self, handler_input):
+    pprint(var(handler_input))
     slot_morceau = handlerInput.requestEnvelope.request.intent.slots.morceau.value
     slot_couplet = handlerInput.requestEnvelope.request.intent.slots.couplet.value
     slot_refrain = handlerInput.requestEnvelope.request.intent.slots.refrain.value
