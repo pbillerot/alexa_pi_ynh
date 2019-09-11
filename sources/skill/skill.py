@@ -36,14 +36,12 @@ logger.setLevel(logging.INFO)
 
 class ParoleIntentHandler(AbstractRequestHandler):
   def can_handle(self, handler_input):
-    pprint(var(handler_input))
-    return handlerInput.requestEnvelope.request.intent.name === "ParoleIntent"
+    return handlerInput.requestEnvelope.request.intent.name == "ParoleIntent"
 
   def handle(self, handler_input):
-    pprint(var(handler_input))
-    slot_morceau = handlerInput.requestEnvelope.request.intent.slots.morceau.value
-    slot_couplet = handlerInput.requestEnvelope.request.intent.slots.couplet.value
-    slot_refrain = handlerInput.requestEnvelope.request.intent.slots.refrain.value
+    slot_morceau = handler_input.requestEnvelope.request.intent.slots.morceau.value
+    slot_couplet = handler_input.requestEnvelope.request.intent.slots.couplet.value
+    slot_refrain = handler_input.requestEnvelope.request.intent.slots.refrain.value
     speech_text = "Paroles non trouvées"
     try:
       if slot_morceau is not None:
