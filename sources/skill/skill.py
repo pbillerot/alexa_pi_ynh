@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """
+  https://alexa-skills-kit-python-sdk.readthedocs.io/en/latest/legacy.html
   https://developer.amazon.com/fr/docs/alexa-skills-kit-sdk-for-python/overview.html
   
 """
@@ -11,7 +12,7 @@ import logging
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
-from ask_sdk_core.utils import is_request_type, is_intent_name
+from ask_sdk_core.utils import is_request_type, is_intent_name, get_slot, get_slot_value
 from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model.interfaces.audioplayer import (
@@ -36,12 +37,18 @@ logger.setLevel(logging.INFO)
 
 class ParoleIntentHandler(AbstractRequestHandler):
   def can_handle(self, handler_input):
-    return handler_input.requestEnvelope.request.intent.name == "ParoleIntent"
+    return is_intent_name("ParoleIntent")(handler_input)
 
   def handle(self, handler_input):
-    slot_morceau = handler_input.requestEnvelope.request.intent.slots.morceau.value
-    slot_couplet = handler_input.requestEnvelope.request.intent.slots.couplet.value
-    slot_refrain = handler_input.requestEnvelope.request.intent.slots.refrain.value
+    slot_morceau = None
+    slot_couplet = None
+    slot_refrain = None
+    if get_slot(handler_input, "Morceau"):
+      slot_morceau = get_slot_value(handler_input, "Morceau")
+    if get_slot(handler_input, "Couplet"):
+      slot_morceau = get_slot_value(handler_input, "Couplet")
+    if get_slot(handler_input, "Refrain"):
+      slot_morceau = get_slot_value(handler_input, "Refrain")
     speech_text = "Paroles non trouvées"
     try:
       if slot_morceau is not None:
