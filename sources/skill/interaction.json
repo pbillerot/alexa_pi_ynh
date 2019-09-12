@@ -37,38 +37,6 @@
           ]
         },
         {
-          "name": "SongFouleSentimentaleConeIntent",
-          "slots": [],
-          "samples": [
-            "foule sentimentale couplet",
-            "foule sentimentale un",
-            "foule sentimentale couplet un"
-          ]
-        },
-        {
-          "name": "SongFouleSentimentaleRoneIntent",
-          "slots": [],
-          "samples": [
-            "foule sentimentale refrain",
-            "foule sentimentale refrain un"
-          ]
-        },
-        {
-          "name": "SongRiveGaucheConeIntent",
-          "slots": [],
-          "samples": [
-            "rive gauche couplet",
-            "rive gauche couplet un"
-          ]
-        },
-        {
-          "name": "SongRiveGaucheRoneIntent",
-          "slots": [],
-          "samples": [
-            "rive gauche refrain un"
-          ]
-        },
-        {
           "name": "TempoCentIntent",
           "slots": [],
           "samples": [

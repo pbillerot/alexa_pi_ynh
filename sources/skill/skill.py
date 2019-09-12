@@ -49,13 +49,13 @@ class ParoleIntentHandler(AbstractRequestHandler):
     refrain = "Refrain"
     if morceau in slots:
       slot_morceau = slots[morceau].value
-      print(f"morceau: {slot_morceau}")
+      # print(f"morceau: {slot_morceau}")
     if couplet in slots:
       slot_couplet = slots[couplet].value
-      print(f"couplet: {slot_couplet}")
+      # print(f"couplet: {slot_couplet}")
     if refrain in slots:
       slot_refrain = slots[refrain].value
-      print(f"refrain: {slot_refrain}")
+      # print(f"refrain: {slot_refrain}")
     speech_text = "Paroles non trouvées"
     try:
       if slot_morceau is not None:
@@ -71,104 +71,25 @@ class ParoleIntentHandler(AbstractRequestHandler):
     return handler_input.response_builder.response
 sb.add_request_handler(ParoleIntentHandler())
 
-class SongFouleSentimentaleConeIntentHandler(AbstractRequestHandler):
-  def can_handle(self, handler_input):
-    return is_intent_name("SongFouleSentimentaleConeIntent")(handler_input)
-
-  def handle(self, handler_input):
-    try:
-      config.read(currentDir + "/data/songs.ini")
-      speech_text = config.get("FouleSentimentale", "c1").replace("\n", ", ")
-    except:
-      speech_text = "FouleSentimentale couplet 1 non trouvé"
-
-    handler_input.response_builder.speak(speech_text).set_should_end_session(False)
-    return handler_input.response_builder.response
-sb.add_request_handler(SongFouleSentimentaleConeIntentHandler())
-
-class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
-  def can_handle(self, handler_input):
-    return is_intent_name("SongFouleSentimentaleRoneIntent")(handler_input)
-
-  def handle(self, handler_input):
-    try:
-      config.read(currentDir + "/data/songs.ini")
-      speech_text = config.get("FouleSentimentale", "r1").replace("\n", ", ")
-    except:
-      speech_text = "FouleSentimentale refrain 1 non trouvé"
-
-    handler_input.response_builder.speak(speech_text).set_should_end_session(False)
-    return handler_input.response_builder.response
-sb.add_request_handler(SongFouleSentimentaleRoneIntentHandler())
-
-class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):
-  def can_handle(self, handler_input):
-    return is_intent_name("SongRiveGaucheConeIntent")(handler_input)
-
-  def handle(self, handler_input):
-    try:
-      config.read(currentDir + "/data/songs.ini")
-      speech_text = config.get("RiveGauche", "c1").replace("\n", ", ")
-    except:
-      speech_text = "RiveGauche couplet 1 non trouvé"
-
-    handler_input.response_builder.speak(speech_text).set_should_end_session(False)
-    return handler_input.response_builder.response
-sb.add_request_handler(SongRiveGaucheConeIntentHandler())
-
-class SongRiveGaucheRoneIntentHandler(AbstractRequestHandler):
-  def can_handle(self, handler_input):
-    return is_intent_name("SongRiveGaucheRoneIntent")(handler_input)
-
-  def handle(self, handler_input):
-    try:
-      config.read(currentDir + "/data/songs.ini")
-      speech_text = config.get("RiveGauche", "r1").replace("\n", ", ")
-    except:
-      speech_text = "RiveGauche refrain 1 non trouvé"
-
-    handler_input.response_builder.speak(speech_text).set_should_end_session(False)
-    return handler_input.response_builder.response
-sb.add_request_handler(SongRiveGaucheRoneIntentHandler())
-
 class HelloWorldIntentHandler(AbstractRequestHandler):
   """Handler for Hello World Intent."""
   def can_handle(self, handler_input):
-    # type: (HandlerInput) -> bool
     return is_intent_name("HelloWorldIntent")(handler_input)
 
   def handle(self, handler_input):
-    print("HelloWorldIntent")
+    print("Hello World")
     speech_text = "Bonjour, de la part de Karl!"
-
     handler_input.response_builder.speak(speech_text).set_should_end_session(False)
     return handler_input.response_builder.response
 sb.add_request_handler(HelloWorldIntentHandler())
 
-class MeteoIntentHandler(AbstractRequestHandler):
-  """Handler for Hello World Intent."""
-  def can_handle(self, handler_input):
-    # type: (HandlerInput) -> bool
-    return is_intent_name("MeteoIntent")(handler_input)
-
-  def handle(self, handler_input):
-    # type: (HandlerInput) -> Response
-    print("MeteoIntent")
-    speech_text = "Il fait beau!"
-
-    handler_input.response_builder.speak(speech_text).set_should_end_session(False)
-    return handler_input.response_builder.response
-sb.add_request_handler(MeteoIntentHandler())
-
 class TempoCentIntentHandler(AbstractRequestHandler):
   """Handler for Tempo 100 Intent."""
   def can_handle(self, handler_input):
-    # type: (HandlerInput) -> bool
     return is_intent_name("TempoCentIntent")(handler_input)
 
   def handle(self, handler_input):
-    # type: (HandlerInput) -> Response
-    print("TempoCentIntent")
+    print("TempoCent")
     speech_text = "OK j'envoie la Tempo 100!"
 
     requests.get(url="http://0.0.0.0:5000/player/play/drums_100.wav")
@@ -181,12 +102,10 @@ sb.add_request_handler(TempoCentIntentHandler())
 class TempoCentDixIntentHandler(AbstractRequestHandler):
   """Handler for Tempo 110 Intent."""
   def can_handle(self, handler_input):
-    # type: (HandlerInput) -> bool
     return is_intent_name("TempoCentDixIntent")(handler_input)
 
   def handle(self, handler_input):
-    # type: (HandlerInput) -> Response
-    print("TempoCentDixIntent")
+    print("TempoCentDix")
     speech_text = "OK j'envoie la Tempo 110!"
 
     requests.get(url="http://0.0.0.0:8000/alexa/player/play/drums_110.wav")
@@ -198,12 +117,10 @@ sb.add_request_handler(TempoCentDixIntentHandler())
 class LaunchRequestHandler(AbstractRequestHandler):
   """Handler for Skill Launch."""
   def can_handle(self, handler_input):
-    # type: (HandlerInput) -> bool
     return is_request_type("LaunchRequest")(handler_input)
 
   def handle(self, handler_input):
-    # type: (HandlerInput) -> Response
-    print("LaunchRequest")
+    print("LaunchRequest Karl à ton écoute")
     speech_text = "Karl à ton écoute"
 
     handler_input.response_builder.speak(speech_text).set_should_end_session(False)
@@ -212,11 +129,9 @@ class LaunchRequestHandler(AbstractRequestHandler):
 class HelpIntentHandler(AbstractRequestHandler):
   """Handler for Help Intent."""
   def can_handle(self, handler_input):
-    # type: (HandlerInput) -> bool
     return is_intent_name("AMAZON.HelpIntent")(handler_input)
 
   def handle(self, handler_input):
-    # type: (HandlerInput) -> Response
     print("HelpIntent")
     speech_text = "Tu peux me dire bonjour!"
 
@@ -226,17 +141,13 @@ class HelpIntentHandler(AbstractRequestHandler):
 class CancelOrStopIntentHandler(AbstractRequestHandler):
   """Single handler for Cancel and Stop Intent."""
   def can_handle(self, handler_input):
-    # type: (HandlerInput) -> bool
     return (is_intent_name("AMAZON.CancelIntent")(handler_input) or
             is_intent_name("AMAZON.StopIntent")(handler_input))
 
   def handle(self, handler_input):
-    # type: (HandlerInput) -> Response
     print("CancelOrStopIntent")
     speech_text = "Bye!"
-
     # requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
-
     handler_input.response_builder.speak(speech_text).set_should_end_session(True)
     return handler_input.response_builder.response
 
@@ -244,11 +155,9 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
 class SessionEndedRequestHandler(AbstractRequestHandler):
   """Handler for Session End."""
   def can_handle(self, handler_input):
-    # type: (HandlerInput) -> bool
     return is_request_type("SessionEndedRequest")(handler_input)
 
   def handle(self, handler_input):
-    # type: (HandlerInput) -> Response
     print("SessionEndedRequest")
     # requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
     return handler_input.response_builder.response
@@ -258,14 +167,11 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
   respond with custom message.
   """
   def can_handle(self, handler_input, exception):
-    # type: (HandlerInput, Exception) -> bool
     return True
 
   def handle(self, handler_input, exception):
-    # type: (HandlerInput, Exception) -> Response
     print("CatchAllException")
     logger.error(exception, exc_info=True)
-
     speech = "Désolé, ya un bug dans le programme de Barbichu !!"
     handler_input.response_builder.speak(speech).ask(speech)
     # requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
