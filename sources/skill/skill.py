@@ -48,22 +48,22 @@ class ParoleIntentHandler(AbstractRequestHandler):
     couplet = "Couplet"
     refrain = "Refrain"
     if morceau in slots:
-      slot_morceau = f"{slots[morceau].value}"
+      slot_morceau = slots[morceau].value
       print(f"morceau: {slot_morceau}")
     if couplet in slots:
-      slot_couplet = f"c{slots[couplet].value}"
+      slot_couplet = slots[couplet].value
       print(f"couplet: {slot_couplet}")
     if refrain in slots:
-      slot_refrain = f"r{slots[refrain].value}"
+      slot_refrain = slots[refrain].value
       print(f"refrain: {slot_refrain}")
     speech_text = "Paroles non trouvées"
     try:
       if slot_morceau is not None:
         config.read(currentDir + "/data/songs.ini")
         if slot_couplet is not None:
-          speech_text = config.get(slot_morceau, slot_couplet).replace("\n", ", ")
+          speech_text = config.get(slot_morceau, f"c{slot_couplet}").replace("\n", ", ")
         if slot_refrain is not None:
-          speech_text = config.get(slot_morceau, slot_refrain).replace("\n", ", ")
+          speech_text = config.get(slot_morceau, f"r{slot_refrain}").replace("\n", ", ")
     except:
       speech_text = "Erreur recherche des paroles"
 
