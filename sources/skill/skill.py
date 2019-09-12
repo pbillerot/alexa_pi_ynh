@@ -48,13 +48,13 @@ class ParoleIntentHandler(AbstractRequestHandler):
     couplet = "Couplet"
     refrain = "Refrain"
     if morceau in slots:
-      slot_morceau = f"{slots[morceau]}"
+      slot_morceau = f"{slots[morceau].value}"
       print(f"morceau: {slot_morceau}")
     if couplet in slots:
-      slot_couplet = f"c{slots[couplet]}"
+      slot_couplet = f"c{slots[couplet].value}"
       print(f"couplet: {slot_couplet}")
     if refrain in slots:
-      slot_refrain = f"r{slots[refrain]}"
+      slot_refrain = f"r{slots[refrain].value}"
       print(f"refrain: {slot_refrain}")
     speech_text = "Paroles non trouvées"
     try:
