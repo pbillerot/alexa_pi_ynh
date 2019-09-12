@@ -11,7 +11,7 @@ main = Blueprint('main', __name__, url_prefix="/alexa")
 @main.route('/')
 def hello_world():
   print('Hello')
-  return "Hello!!"
+  return "Hello!!\n"
 
 @main.route('/hello/<user>')
 def hello_user(user):

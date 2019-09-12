@@ -87,24 +87,15 @@
           "slots": [
             {
               "name": "Morceau",
-              "type": "morceau",
-              "samples": [
-                "{Morceau}"
-              ]
+              "type": "morceau"
             },
             {
               "name": "Couplet",
-              "type": "couplet",
-              "samples": [
-                "{Couplet}"
-              ]
+              "type": "couplet"
             },
             {
               "name": "Refrain",
-              "type": "refrain",
-              "samples": [
-                "{Refrain}"
-              ]
+              "type": "refrain"
             }
           ],
           "samples": [

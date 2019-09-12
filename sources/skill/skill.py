@@ -45,10 +45,13 @@ class ParoleIntentHandler(AbstractRequestHandler):
     slot_refrain = None
     if get_slot(handler_input, "Morceau"):
       slot_morceau = get_slot_value(handler_input, "Morceau")
+      print(slot_morceau)
     if get_slot(handler_input, "Couplet"):
-      slot_morceau = get_slot_value(handler_input, "Couplet")
+      slot_couplet = get_slot_value(handler_input, "Couplet")
+      print(slot_couplet)
     if get_slot(handler_input, "Refrain"):
-      slot_morceau = get_slot_value(handler_input, "Refrain")
+      slot_refrain = get_slot_value(handler_input, "Refrain")
+      print(slot_refrain)
     speech_text = "Paroles non trouvées"
     try:
       if slot_morceau is not None:
