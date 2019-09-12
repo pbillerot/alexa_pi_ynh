@@ -35,6 +35,18 @@ sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+function get_slot_id(slot){
+    let value = slot.value;
+    let resolution = (slot.resolutions && slot.resolutions.resolutionsPerAuthority 
+      && slot.resolutions.resolutionsPerAuthority.length > 0) 
+      ? slot.resolutions.resolutionsPerAuthority[0] : null;
+    if(resolution && resolution.status.code == 'ER_SUCCESS_MATCH'){
+        let resolutionValue = resolution.values[0].value;
+        value = resolutionValue.id ? resolutionValue.id : resolutionValue.name;
+    }
+    return value;
+}
+
 class ParoleIntentHandler(AbstractRequestHandler):
   def can_handle(self, handler_input):
     return is_intent_name("ParoleIntent")(handler_input)
@@ -48,26 +60,25 @@ class ParoleIntentHandler(AbstractRequestHandler):
     couplet = "Couplet"
     refrain = "Refrain"
     if morceau in slots:
-      slot_morceau = slots[morceau].value
-      # print(f"morceau: {slot_morceau}")
+      slot_morceau = get_slot_id(slots[morceau])
     if couplet in slots:
-      slot_couplet = slots[couplet].value
-      # print(f"couplet: {slot_couplet}")
+      slot_couplet = get_slot_id(slots[couplet])
     if refrain in slots:
-      slot_refrain = slots[refrain].value
-      # print(f"refrain: {slot_refrain}")
+      slot_refrain = get_slot_id(slots[refrain])
+
     speech_text = "Paroles non trouvées"
     try:
       if slot_morceau is not None:
         config.read(currentDir + "/data/songs.ini")
         if slot_couplet is not None:
-          speech_text = config.get(slot_morceau, f"c{slot_couplet}").replace("\n", ", ")
+          speech_text = config.get(slot_morceau, slot_couplet).replace("\n", ", ")
         if slot_refrain is not None:
-          speech_text = config.get(slot_morceau, f"r{slot_refrain}").replace("\n", ", ")
+          speech_text = config.get(slot_morceau, slot_refrain).replace("\n", ", ")
     except:
-      print(f"Erreur recherche morceau:{slot_morceau} couplet:{slot_couplet} refrain:{slot_refrain}")
       speech_text = "Erreur recherche "
 
+    print(f"morceau: {slot_morceau} couplet:{slot_couplet} refrain:{slot_refrain}")
+    
     handler_input.response_builder.speak(speech_text).set_should_end_session(False)
     return handler_input.response_builder.response
 sb.add_request_handler(ParoleIntentHandler())

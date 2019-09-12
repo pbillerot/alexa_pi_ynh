@@ -81,26 +81,32 @@
           "name": "morceau",
           "values": [
             {
+              "id": "AmourMachine",
               "name": {
                 "value": "amour machine",
                 "synonyms": [
-                  "machine", "amour"
+                  "machine",
+                  "amour"
                 ]
               }
             },
             {
+              "id": "RiveGauche",
               "name": {
                 "value": "rive gauche",
                 "synonyms": [
-                  "rive", "gauche"
+                  "rive",
+                  "gauche"
                 ]
               }
             },
             {
+              "id": "FouleSentimentale",
               "name": {
                 "value": "foule sentimentale",
                 "synonyms": [
-                  "foule", "sentimentale"
+                  "foule",
+                  "sentimentale"
                 ]
               }
             }
@@ -110,6 +116,7 @@
           "name": "couplet",
           "values": [
             {
+              "id": "c3",
               "name": {
                 "value": "trois",
                 "synonyms": [
@@ -118,6 +125,7 @@
               }
             },
             {
+              "id": "c2",
               "name": {
                 "value": "deux",
                 "synonyms": [
@@ -126,6 +134,7 @@
               }
             },
             {
+              "id": "c1",
               "name": {
                 "value": "un",
                 "synonyms": [
@@ -139,6 +148,7 @@
           "name": "refrain",
           "values": [
             {
+              "id": "r3",
               "name": {
                 "value": "trois",
                 "synonyms": [
@@ -147,6 +157,7 @@
               }
             },
             {
+              "id": "r2",
               "name": {
                 "value": "deux",
                 "synonyms": [
@@ -155,6 +166,7 @@
               }
             },
             {
+              "id": "r1",
               "name": {
                 "value": "un",
                 "synonyms": [
