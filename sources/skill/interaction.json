@@ -67,8 +67,12 @@
             }
           ],
           "samples": [
+            "parole {Morceau} le {Refrain} refrain",
+            "parole {Morceau} le {Couplet} couplet",
             "parole {Morceau} couplet {Couplet}",
-            "parole {Morceau} refrain {Refrain}"
+            "parole {Morceau} couplet numéro {Couplet}",
+            "parole {Morceau} refrain {Refrain}",
+            "parole {Morceau} refrain numéro {Refrain}"
           ]
         }
       ],
@@ -78,17 +82,26 @@
           "values": [
             {
               "name": {
-                "value": "amour machine"
+                "value": "amour machine",
+                "synonyms": [
+                  "machine", "amour"
+                ]
               }
             },
             {
               "name": {
-                "value": "rive gauche"
+                "value": "rive gauche",
+                "synonyms": [
+                  "rive", "gauche"
+                ]
               }
             },
             {
               "name": {
-                "value": "foule sentimentale"
+                "value": "foule sentimentale",
+                "synonyms": [
+                  "foule", "sentimentale"
+                ]
               }
             }
           ]
@@ -98,17 +111,26 @@
           "values": [
             {
               "name": {
-                "value": "trois"
+                "value": "trois",
+                "synonyms": [
+                  "troisième"
+                ]
               }
             },
             {
               "name": {
-                "value": "deux"
+                "value": "deux",
+                "synonyms": [
+                  "deuxième"
+                ]
               }
             },
             {
               "name": {
-                "value": "un"
+                "value": "un",
+                "synonyms": [
+                  "premier"
+                ]
               }
             }
           ]
@@ -118,17 +140,26 @@
           "values": [
             {
               "name": {
-                "value": "trois"
+                "value": "trois",
+                "synonyms": [
+                  "troisième"
+                ]
               }
             },
             {
               "name": {
-                "value": "deux"
+                "value": "deux",
+                "synonyms": [
+                  "deuxième"
+                ]
               }
             },
             {
               "name": {
-                "value": "un"
+                "value": "un",
+                "synonyms": [
+                  "premier"
+                ]
               }
             }
           ]

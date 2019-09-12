@@ -65,7 +65,8 @@ class ParoleIntentHandler(AbstractRequestHandler):
         if slot_refrain is not None:
           speech_text = config.get(slot_morceau, f"r{slot_refrain}").replace("\n", ", ")
     except:
-      speech_text = "Erreur recherche des paroles"
+      print(f"Erreur recherche morceau:{slot_morceau} couplet:{slot_couplet} refrain:{slot_refrain}")
+      speech_text = "Erreur recherche "
 
     handler_input.response_builder.speak(speech_text).set_should_end_session(False)
     return handler_input.response_builder.response
