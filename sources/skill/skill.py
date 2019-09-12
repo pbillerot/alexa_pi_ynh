@@ -40,17 +40,21 @@ class ParoleIntentHandler(AbstractRequestHandler):
     return is_intent_name("ParoleIntent")(handler_input)
 
   def handle(self, handler_input):
+    slots = handler_input.request_envelope.request.intent.slots
     slot_morceau = None
     slot_couplet = None
     slot_refrain = None
-    if get_slot(handler_input, "Morceau"):
-      slot_morceau = get_slot_value(handler_input, "Morceau")
+    morceau = "Morceau"
+    couplet = "Couplet"
+    refrain = "Refrain"
+    if morceau in slots:
+      slot_morceau = f"{slots[morceau]}"
       print(f"morceau: {slot_morceau}")
-    if get_slot(handler_input, "Couplet"):
-      slot_couplet = get_slot_value(handler_input, "Couplet")
+    if couplet in slots:
+      slot_couplet = f"c{slots[couplet]}"
       print(f"couplet: {slot_couplet}")
-    if get_slot(handler_input, "Refrain"):
-      slot_refrain = get_slot_value(handler_input, "Refrain")
+    if refrain in slots:
+      slot_refrain = f"r{slots[refrain]}"
       print(f"refrain: {slot_refrain}")
     speech_text = "Paroles non trouvées"
     try:
@@ -61,11 +65,9 @@ class ParoleIntentHandler(AbstractRequestHandler):
         if slot_refrain is not None:
           speech_text = config.get(slot_morceau, slot_refrain).replace("\n", ", ")
     except:
-      speech_text = "Paroles non trouvées"
+      speech_text = "Erreur recherche des paroles"
 
-    handler_input.response_builder.speak(speech_text).set_card(
-      SimpleCard("Parole", speech_text)).set_should_end_session(
-      False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 sb.add_request_handler(ParoleIntentHandler())
 
@@ -80,9 +82,7 @@ class SongFouleSentimentaleConeIntentHandler(AbstractRequestHandler):
     except:
       speech_text = "FouleSentimentale couplet 1 non trouvé"
 
-    handler_input.response_builder.speak(speech_text).set_card(
-      SimpleCard("Parole", speech_text)).set_should_end_session(
-      False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 sb.add_request_handler(SongFouleSentimentaleConeIntentHandler())
 
@@ -97,9 +97,7 @@ class SongFouleSentimentaleRoneIntentHandler(AbstractRequestHandler):
     except:
       speech_text = "FouleSentimentale refrain 1 non trouvé"
 
-    handler_input.response_builder.speak(speech_text).set_card(
-        SimpleCard("Parole", speech_text)).set_should_end_session(
-        False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 sb.add_request_handler(SongFouleSentimentaleRoneIntentHandler())
 
@@ -114,9 +112,7 @@ class SongRiveGaucheConeIntentHandler(AbstractRequestHandler):
     except:
       speech_text = "RiveGauche couplet 1 non trouvé"
 
-    handler_input.response_builder.speak(speech_text).set_card(
-        SimpleCard("Parole", speech_text)).set_should_end_session(
-        False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 sb.add_request_handler(SongRiveGaucheConeIntentHandler())
 
@@ -131,9 +127,7 @@ class SongRiveGaucheRoneIntentHandler(AbstractRequestHandler):
     except:
       speech_text = "RiveGauche refrain 1 non trouvé"
 
-    handler_input.response_builder.speak(speech_text).set_card(
-      SimpleCard("Parole", speech_text)).set_should_end_session(
-      False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 sb.add_request_handler(SongRiveGaucheRoneIntentHandler())
 
@@ -147,9 +141,7 @@ class HelloWorldIntentHandler(AbstractRequestHandler):
     print("HelloWorldIntent")
     speech_text = "Bonjour, de la part de Karl!"
 
-    handler_input.response_builder.speak(speech_text).set_card(
-        SimpleCard("Hello World", speech_text)).set_should_end_session(
-        False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 sb.add_request_handler(HelloWorldIntentHandler())
 
@@ -164,9 +156,7 @@ class MeteoIntentHandler(AbstractRequestHandler):
     print("MeteoIntent")
     speech_text = "Il fait beau!"
 
-    handler_input.response_builder.speak(speech_text).set_card(
-      SimpleCard("Hello World", speech_text)).set_should_end_session(
-      False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 sb.add_request_handler(MeteoIntentHandler())
 
@@ -183,9 +173,7 @@ class TempoCentIntentHandler(AbstractRequestHandler):
 
     requests.get(url="http://0.0.0.0:5000/player/play/drums_100.wav")
 
-    handler_input.response_builder.speak(speech_text).set_card(
-        SimpleCard("Hello World", speech_text)).set_should_end_session(
-        False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 
 sb.add_request_handler(TempoCentIntentHandler())
@@ -203,9 +191,7 @@ class TempoCentDixIntentHandler(AbstractRequestHandler):
 
     requests.get(url="http://0.0.0.0:8000/alexa/player/play/drums_110.wav")
 
-    handler_input.response_builder.speak(speech_text).set_card(
-      SimpleCard("Hello World", speech_text)).set_should_end_session(
-      False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 sb.add_request_handler(TempoCentDixIntentHandler())
 
@@ -220,9 +206,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
     print("LaunchRequest")
     speech_text = "Karl à ton écoute"
 
-    handler_input.response_builder.speak(speech_text).set_card(
-      SimpleCard("Hello World", speech_text)).set_should_end_session(
-      False)
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 
 class HelpIntentHandler(AbstractRequestHandler):
@@ -236,9 +220,7 @@ class HelpIntentHandler(AbstractRequestHandler):
     print("HelpIntent")
     speech_text = "Tu peux me dire bonjour!"
 
-    handler_input.response_builder.speak(speech_text).ask(
-      speech_text).set_card(SimpleCard(
-        "Hello World", speech_text))
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 
 class CancelOrStopIntentHandler(AbstractRequestHandler):
@@ -255,8 +237,7 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
 
     # requests.get(url="http://0.0.0.0:8000/alexa/player/stop")
 
-    handler_input.response_builder.speak(speech_text).set_card(
-        SimpleCard("Hello World", speech_text))
+    handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
 
 
