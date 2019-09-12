@@ -37,16 +37,13 @@ logger.setLevel(logging.INFO)
 
 def get_slot_id(slot):
     value = slot.value
-    resoution = None
-    if (slot.resolutions is not None 
-      and slot.resolutions.resolutionsPerAuthority is not None
-      and slot.resolutions.resolutionsPerAuthority.length > 0):
-        resolution = slot.resolutions.resolutionsPerAuthority[0]
-    if (resolution is not None and resolution.status.code = 'ER_SUCCESS_MATCH'):
+    resolution = None
+    if slot.resolutions is not None:
+      resolution = slot.resolutions.resolutions_per_authority[0]
+    if (resolution is not None and resolution.status.code == 'ER_SUCCESS_MATCH'):
         resolutionValue = resolution.values[0].value
         if resolutionValue.id is not None: 
           value = resolutionValue.id
-    }
     return value
 
 
