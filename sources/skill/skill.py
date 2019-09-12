@@ -35,17 +35,17 @@ sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-function get_slot_id(slot){
-    let value = slot.value;
-    let resolution = (slot.resolutions && slot.resolutions.resolutionsPerAuthority 
+function get_slot_id(slot):
+    value = slot.value
+    resolution = (slot.resolutions is not None && slot.resolutions.resolutionsPerAuthority is not None
       && slot.resolutions.resolutionsPerAuthority.length > 0) 
-      ? slot.resolutions.resolutionsPerAuthority[0] : null;
-    if(resolution && resolution.status.code == 'ER_SUCCESS_MATCH'){
-        let resolutionValue = resolution.values[0].value;
-        value = resolutionValue.id ? resolutionValue.id : resolutionValue.name;
+      ? slot.resolutions.resolutionsPerAuthority[0] : None
+    if (resolution is not None && resolution.status.code = 'ER_SUCCESS_MATCH'):
+        resolutionValue = resolution.values[0].value
+        value = resolutionValue.id is not None ? resolutionValue.id : slot.value
     }
-    return value;
-}
+    return value
+
 
 class ParoleIntentHandler(AbstractRequestHandler):
   def can_handle(self, handler_input):
@@ -78,7 +78,7 @@ class ParoleIntentHandler(AbstractRequestHandler):
       speech_text = "Erreur recherche "
 
     print(f"morceau: {slot_morceau} couplet:{slot_couplet} refrain:{slot_refrain}")
-    
+
     handler_input.response_builder.speak(speech_text).set_should_end_session(False)
     return handler_input.response_builder.response
 sb.add_request_handler(ParoleIntentHandler())
