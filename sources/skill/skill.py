@@ -35,14 +35,17 @@ sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-function get_slot_id(slot):
+def get_slot_id(slot):
     value = slot.value
-    resolution = (slot.resolutions is not None && slot.resolutions.resolutionsPerAuthority is not None
-      && slot.resolutions.resolutionsPerAuthority.length > 0) 
-      ? slot.resolutions.resolutionsPerAuthority[0] : None
-    if (resolution is not None && resolution.status.code = 'ER_SUCCESS_MATCH'):
+    resoution = None
+    if (slot.resolutions is not None 
+      and slot.resolutions.resolutionsPerAuthority is not None
+      and slot.resolutions.resolutionsPerAuthority.length > 0):
+        resolution = slot.resolutions.resolutionsPerAuthority[0]
+    if (resolution is not None and resolution.status.code = 'ER_SUCCESS_MATCH'):
         resolutionValue = resolution.values[0].value
-        value = resolutionValue.id is not None ? resolutionValue.id : slot.value
+        if resolutionValue.id is not None: 
+          value = resolutionValue.id
     }
     return value
 
