@@ -22,6 +22,7 @@ from ask_sdk_model.ui import StandardCard, Image
 
 from ask_sdk_model.ui import SimpleCard
 from ask_sdk_model import Response
+from ask_sdk_model.slu.entityresolution import StatusCode
 
 import requests
 import configparser
@@ -43,7 +44,7 @@ def get_slot_id(slot):
     if slot.resolutions is not None:
       status = slot.resolutions.resolutions_per_authority[0].status.code
       print(f"for {slot.name} status={status}")
-      if status == "StatusCode.ER_SUCCESS_MATCH":
+      if status == StatusCode.ER_SUCCESS_MATCH:
         id = slot.resolutions.resolutions_per_authority[0].values[0].value.id
         return id
       else:
