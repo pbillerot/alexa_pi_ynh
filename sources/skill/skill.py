@@ -43,7 +43,7 @@ def get_slot_id(slot):
     if slot.resolutions is not None:
       status = slot.resolutions.resolutions_per_authority[0].status.code
       print(f"for {slot.name} status={status}")
-      if status == "ER_SUCCESS_MATCH":
+      if status == "StatusCode.ER_SUCCESS_MATCH":
         id = slot.resolutions.resolutions_per_authority[0].values[0].value.id
         return id
       else:
