@@ -38,10 +38,11 @@ logger.setLevel(logging.INFO)
 
 
 def get_slot_id(slot):
+  print(f"get_slot_id:{slot}")
   try:
     if slot.resolutions is not None:
       status = slot.resolutions.resolutions_per_authority[0].status.code
-      # print(f"for {slot.name} status={status} id={id}")
+      print(f"for {slot.name} status={status}")
       if status == "ER_SUCCESS_MATCH":
         id = slot.resolutions.resolutions_per_authority[0].values[0].value.id
         return id
