@@ -41,33 +41,18 @@ def get_slot_id(slot):
     """
     handler_input.request_envelope.request.intent.slots[slot_name].resolutions.resolutions_per_authority[0].status.code
     """
-    print(f"********** get_slot_id: {slot}")
-    print(f"**********")
+    # print(f"********** get_slot_id: {slot}")
+    # print(f"**********")
     if slot.resolutions is not None:
-      id = slot.resolutions.resolutions_per_authority[0].values[0].value.id
-      status = slot.resolutions.resolutions_per_authority[0].status.code
-      print(f"for {slot.name} status={status} id={id}")
-      if status == "StatusCode.ER_SUCCESS_MATCH":
-        return id
-      else:
-        return None
+        id = slot.resolutions.resolutions_per_authority[0].values[0].value.id
+        status = slot.resolutions.resolutions_per_authority[0].status.code
+        # print(f"for {slot.name} status={status} id={id}")
+        if status == "ER_SUCCESS_MATCH":
+            return id
+        else:
+            return None
     else:
-      return None
-    # value = slot.value
-    # try:
-    #     resolution = None
-    #     if slot.resolutions is not None:
-    #       resolution = slot.resolutions.resolutions_per_authority[0]
-    #       print(f"resolution: {resolution}")
-    #     if resolution.status.code == 'ER_SUCCESS_MATCH':
-    #       resolutionValue = resolution.values[0].value
-    #       print(f"resolutionValue: {resolutionValue}")
-    #       if resolutionValue.id is not None:
-    #         value = resolutionValue.id
-    #         print(f"value: {value}")
-    # except:
-    #     print(f"Erreur: {slot.name}={slot}")
-    # return value
+        return None
 
 
 class ParoleIntentHandler(AbstractRequestHandler):
