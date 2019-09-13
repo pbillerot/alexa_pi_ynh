@@ -41,8 +41,10 @@ def get_slot_id(slot):
     """
     handler_input.request_envelope.request.intent.slots[slot_name].resolutions.resolutions_per_authority[0].status.code
     """
+    print(f"********** get_slot_id: {slot}")
+    print(f"**********")
     id = slot.resolutions.resolutions_per_authority[0].values[0].value.id
-    status = slot.resolutions.resolutions_per_authority[0].status.code
+    status = slot.resolutions.resolutions_per_authority[0].status.code.StatusCode
     print(f"for {slot.name} status={status} id={id}")
     return id
     # value = slot.value
