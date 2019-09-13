@@ -1,6 +1,10 @@
 
+ Test de l'application
+ ---------------------
+    ssh admin@server-yunohost
     sudo yunohost app upgrade alexa -u https://github.com/pbillerot/alexa_pi_ynh
     sudo systemctl stop alexa.service
+    /var/www/alexa $ source venv/bin/activate
     gunicorn --bind 127.0.0.1:8000 wsgi:app
     curl http://127.0.0.1:8000/alexa/
 
