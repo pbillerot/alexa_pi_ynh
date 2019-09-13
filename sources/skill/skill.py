@@ -38,21 +38,20 @@ logger.setLevel(logging.INFO)
 
 
 def get_slot_id(slot):
-    """
-    handler_input.request_envelope.request.intent.slots[slot_name].resolutions.resolutions_per_authority[0].status.code
-    """
-    # print(f"********** get_slot_id: {slot}")
-    # print(f"**********")
+  try:
     if slot.resolutions is not None:
+      status = slot.resolutions.resolutions_per_authority[0].status.code
+      # print(f"for {slot.name} status={status} id={id}")
+      if status == "ER_SUCCESS_MATCH":
         id = slot.resolutions.resolutions_per_authority[0].values[0].value.id
-        status = slot.resolutions.resolutions_per_authority[0].status.code
-        # print(f"for {slot.name} status={status} id={id}")
-        if status == "ER_SUCCESS_MATCH":
-            return id
-        else:
-            return None
-    else:
+        return id
+      else:
         return None
+    else:
+      return None
+  except:
+    print(f"ERROR slot:{slot}")
+    return None
 
 
 class ParoleIntentHandler(AbstractRequestHandler):
