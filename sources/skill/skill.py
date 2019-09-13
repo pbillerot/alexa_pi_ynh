@@ -43,10 +43,13 @@ def get_slot_id(slot):
     """
     print(f"********** get_slot_id: {slot}")
     print(f"**********")
-    id = slot.resolutions.resolutions_per_authority[0].values[0].value.id
-    status = slot.resolutions.resolutions_per_authority[0].status.code
-    print(f"for {slot.name} status={status} id={id}")
-    return id
+    if slot.resolutions is not None:
+      id = slot.resolutions.resolutions_per_authority[0].values[0].value.id
+      status = slot.resolutions.resolutions_per_authority[0].status.code
+      print(f"for {slot.name} status={status} id={id}")
+      return id
+    else:
+      return None
     # value = slot.value
     # try:
     #     resolution = None
